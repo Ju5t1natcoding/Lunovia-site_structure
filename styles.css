@@ -88,6 +88,14 @@ img {
     color: #fff;
 }
 
+/* Animație pentru ieșire */
+#recaptcha-overlay.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+    transition: opacity 1.5s ease, transform 1s ease;
+}
+
 /* Content for the reCaptcha */
 #recaptcha {
     background: #333;
