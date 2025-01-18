@@ -1,0 +1,136 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling when overlay is active */
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Apricots', serif;
+    font-size: 28px;
+}
+
+/* Navigation */
+nav ul {
+    background: #444;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background: #555;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Containerul care conține imaginea */
+.container {
+    display: flex;
+    justify-content: center; /* Centrează pe orizontală */
+    align-items: center; /* Centrează pe verticală */
+    height: 45vh; /* Înălțimea containerului este 100% din înălțimea ferestrei */
+}
+
+/* Imaginea */
+img {
+    max-width: 100%; /* Asigură-te că imaginea se redimensionează corect */
+    height: auto; /* Păstrează proporțiile imaginii */
+}
+
+/* Overlay Styles */
+#recaptcha-overlay {
+    position: fixed; /* Ensures it stays in place */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Cover full width */
+    height: 100vh; /* Cover full height */
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex; /* Center content inside */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* High z-index to be above all other content */
+    color: #fff;
+}
+
+/* Content for the reCaptcha */
+#recaptcha {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Compliments */
+#compliments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.compliment {
+    background: #e0f7fa;
+    color: #00796b;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.compliment:hover {
+    transform: scale(1.1);
+    background: #b2dfdb;
+}
+
+.compliment.correct {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.compliment.wrong {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+/* Main Content */
+#main-content {
+    display: none; /* Hide content initially */
+}
