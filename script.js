@@ -23,17 +23,23 @@ compliments.forEach(compliment => {
         // Reset all compliment styles
         document.querySelectorAll(".compliment").forEach(el => el.classList.remove("correct", "wrong"));
 
-        // If the answer is correct, hide the overlay
+        // If the answer is correct, hide the overlay with animation
         if (compliment.correct) {
             div.classList.add("correct");
-            overlay.style.display = "none"; // Hide overlay
-            mainContent.style.display = "block"; // Show main content
-            document.body.style.overflow = "auto"; // Enable scrolling
+
+            // Adaugă clasa "hidden" pentru a declanșa animația CSS
+            overlay.classList.add("hidden");
+
+            // După animație, elimină complet overlay-ul și afișează conținutul principal
+            setTimeout(() => {
+                overlay.style.display = "none";
+                mainContent.style.display = "block";
+                document.body.style.overflow = "auto"; // Enable scrolling
+            }, 500); // Durata animației (500ms)
         } else {
             // If the answer is wrong, highlight the wrong answer and reset
             div.classList.add("wrong");
             setTimeout(() => {
-                // Reset the compliment colors and keep the overlay on screen
                 document.querySelectorAll(".compliment").forEach(el => el.classList.remove("correct", "wrong"));
             }, 1000); // Wait for 1 second before resetting
         }
