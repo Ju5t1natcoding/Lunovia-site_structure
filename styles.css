@@ -1,10 +1,11 @@
-/* General Styles */
+/* Body */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrolling when overlay is active */
+    overflow: hidden; /* Blochează scroll-ul inițial */
+    background: #f0f0f0; /* Fundal pentru întreaga pagină */
 }
 
 /* Header */
@@ -70,39 +71,83 @@ footer {
 /* Imaginea */
 img {
     max-width: 100%; /* Asigură-te că imaginea se redimensionează corect */
-    height: auto; /* Păstrează proporțiile imaginii */
+    height: 100%; /* Păstrează proporțiile imaginii */
 }
 
-/* Overlay Styles */
+/* Starea inițială: invizibil */
 #recaptcha-overlay {
-    position: fixed; /* Ensures it stays in place */
+    opacity: 0; /* Pornește complet invizibil */
+    transition: opacity 1.5s ease; /* Tranziție pentru fade-in */
+}
+
+/* După ce începe animația */
+#recaptcha-overlay.fade-in {
+    opacity: 1; /* Devine complet vizibil */
+}
+
+/* Main Content */
+#main-content {
+    display: none; /* Inițial ascuns */
+    opacity: 0;
+    transition: opacity 2.5s ease; /* Animatie de fade-in */
+}
+
+#main-content.visible {
+    display: block;
+    opacity: 1; /* Fă-l vizibil gradual */
+}
+
+/* Overlay (Recaptcha) */
+#recaptcha-overlay {
+    opacity: 1; /* Inițial vizibil */
+    transition: opacity 3.5s ease; /* Tranziție pentru fade-out */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Cover full width */
-    height: 100vh; /* Cover full height */
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    display: flex; /* Center content inside */
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65); /* Semi-transparent */
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* High z-index to be above all other content */
+    z-index: 9999;
     color: #fff;
 }
 
-/* Animație pentru ieșire */
+/* Când overlay-ul dispare */
 #recaptcha-overlay.hidden {
-    opacity: 0;
-    transform: translateY(-100%);
-    pointer-events: none;
-    transition: opacity 1.5s ease, transform 1s ease;
+    opacity: 0; /* Face overlay-ul invizibil */
+    pointer-events: none; /* Dezactivează interacțiunile */
 }
 
-/* Content for the reCaptcha */
+/* Animație de zbor pentru reCaptcha */
 #recaptcha {
     background: #333;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: flyAway 2.5s ease forwards, fadeIn 2s ease forwards; /* Animație de fade-in după zbor */
+}
+
+/* Keyframes pentru animația de zbor (de jos în sus) */
+@keyframes flyAway {
+    0% {
+        transform: translateY(50vh); /* începe din partea de jos a ecranului */
+    }
+    100% {
+        transform: translateY(0); /* Se oprește în mijlocul ecranului */
+    }
+}
+
+/* Keyframes pentru fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* Compliments */
@@ -141,4 +186,34 @@ img {
 /* Main Content */
 #main-content {
     display: none; /* Hide content initially */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Efectul de rotație pe axa Y și saritura */
+@keyframes rotateJumpY {
+    0% {
+        transform: rotateY(0deg) scale(1); /* La început, imaginea nu este rotită */
+    }
+    100% {
+        transform: rotateY(360deg) scale(1); /* La final, imaginea revine la poziția inițială */
+    }
+}
+
+/* Aplica animația imaginii */
+#logo {
+    cursor: cursor; /* Arată cursorul de tip pointer pentru interactivitate */
+    transition: transform 1s ease; /* Animație lină */
+}
+
+/* Stil pentru a face click-ul inactiv în timpul animației */
+#logo.no-click {
+    pointer-events: none; /* Dezactivează interacțiunea cu imaginea */
+}
+
+.no-click {
+    pointer-events: none;
+    opacity: 0.9;
 }
